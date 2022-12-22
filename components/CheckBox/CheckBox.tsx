@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Check} from "../Check/Check";
 import styles from './CheckBox.module.scss';
 import {useAppAction} from "../../hooks/redux";
@@ -16,8 +16,9 @@ export const CheckBox: React.FC<ITextProps> = ({text, disabled, index}) => {
 
     const click = () => {
         if (!disabled) {
+            const state = store.getState().answers[index];
             setChecked(!checked);
-            selectAnswer({index, checked: !checked});
+            selectAnswer({index, checked: !state});
         }
     };
 

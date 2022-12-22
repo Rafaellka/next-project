@@ -7,9 +7,9 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<WithId<Document>>
 ) {
-    const test = await sendResult(JSON.parse(req.body));
+    await sendResult(JSON.parse(req.body));
     //@ts-ignore
-    res.status(200).json(test);
+    res.status(200);
 }
 
 async function sendResult(results: IQuestionWithUserAnswers[]) {

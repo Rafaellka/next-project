@@ -40,11 +40,10 @@ const Test: FC<{ test: ITest }> = ({test}) => {
 
     const skip = async () => {
         reset();
-        if (id + 1 >= test.questions.length) {
-            await router.push(`/${testid}/${1}`);
-        } else {
-            await router.push(`/${testid}/${id + 2}`);
-        }
+        id + 1 >= test.questions.length
+            ? await router.push(`/${testid}/${1}`)
+            : await router.push(`/${testid}/${id + 2}`);
+
     }
 
     const getResults = async () => {
