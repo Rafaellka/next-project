@@ -1,0 +1,118 @@
+.container {
+  display: flex;
+
+  .questionsList {
+    display: flex;
+    flex-direction: column;
+    padding: 55px 33px 0px;
+    width: 100px;
+    height: 100vh;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.06);
+    gap: 12px;
+
+    .back {
+      height: 18px;
+      background-image: url("/back.svg");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      margin-bottom: 55px;
+
+      &hover {
+        cursor: pointer;
+      }
+    }
+
+    .question {
+      border-bottom: 1px solid #E0E0E0;
+      padding-bottom: 12px;
+      font-size: 18px;
+      line-height: 24px;
+      font-weight: 600;
+      color: #006666;
+      text-align: center;
+
+      &:hover {
+        cursor: pointer;
+        color: #00EAD9;
+      }
+    }
+
+    .current {
+      color: #00EAD9;
+    }
+
+    .skipped {
+      color: #BDBDBD;
+    }
+
+  }
+
+  .questionInfo {
+    display: flex;
+    position: relative;
+    flex: 1 0;
+    flex-direction: column;
+    padding-top: 32px;
+
+    .header {
+      display: flex;
+      border-bottom: 4px solid #C4C4C4;
+      justify-content: space-between;
+      padding: 0 38px 32px 36px;
+
+      .icons {
+        display: flex;
+        gap: 24px;
+      }
+
+      .text {
+        position: absolute;
+        left: 498px;
+        font-weight: 700;
+        width: 824px;
+        height: 24px;
+        font-size: 20px;
+        line-height: 24px;
+        color: #828282;
+        text-transform: uppercase;
+        text-align: center;
+        align-self: center;
+      }
+    }
+
+    .timerContainer {
+      position: absolute;
+      top: 208px;
+      left: 850px;
+    }
+
+    .main {
+      position: absolute;
+      top: 390px;
+      left: 546px;
+      display: flex;
+      flex-direction: column;
+
+      .questionText {
+        width: 650px;
+        margin: 0 87px 60px;
+        padding: 0 87px;
+        text-align: center;
+      }
+
+      .answers {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+
+      .buttons {
+        display: flex;
+        flex-direction: row-reverse;
+        margin-top: 100px;
+        gap: 24px;
+      }
+    }
+  }
+}

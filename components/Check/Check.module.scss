@@ -1,0 +1,30 @@
+.checkbox {
+  width: 14px;
+  height: 14px;
+  border: 2px solid grey;
+  border-radius: 2px;
+
+  &:not(.disabled):not(.checked):hover {
+    border: 2px solid #00EAD9;
+    cursor: pointer;
+  }
+
+  &.disabled {
+    border: 2px solid grey;
+    opacity: 0.45;
+    cursor: default;
+  }
+}
+
+.checked {
+  background-color: #00EAD9;
+  border: 2px solid #00EAD9;
+  background-image: url("/checkbox.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

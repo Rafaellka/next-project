@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  padding: 15px 12px;
+  box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  background: #FFFFFF;
+  gap: 18px;
+  align-items: center;
+  width: 400px;
+  height: 50px;
+
+  &:not(.disabled):not(.checked):hover {
+    cursor: pointer;
+
+    div:first-child {
+      border: 2px solid #00EAD9;
+    }
+  }
+
+  .unselectable {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}
+
+.disabled {
+  opacity: 0.45;
+  cursor: default;
+  user-select: none;
+}
