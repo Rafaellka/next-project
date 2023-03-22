@@ -8,9 +8,10 @@ interface ITextProps {
     text: string;
     disabled: boolean;
     index: number;
+    questionId: number;
 }
 
-export const CheckBox: React.FC<ITextProps> = ({text, disabled, index}) => {
+export const CheckBox: React.FC<ITextProps> = ({text, disabled, index, questionId}) => {
     const [checked, setChecked] = useState(false);
     const {selectAnswer} = useAppAction();
 
@@ -24,7 +25,10 @@ export const CheckBox: React.FC<ITextProps> = ({text, disabled, index}) => {
 
     return (
         <div className={`${styles.container} ${disabled ? styles.disabled : ''}`} onClick={click}>
-            <Check checked={store.getState().answers[index]} disabled={disabled} />
+            <Check checked={store.getState().testResult.find(elem => elem.id === questionId)
+                //@ts-ignore
+                ? store.getState().testResult.find(elem => elem.id === questionId).userAnswers[index]
+                : store.getState().answers[index]} disabled={disabled} />
             <div className={styles.unselectable}>{text}</div>
         </div>
     );

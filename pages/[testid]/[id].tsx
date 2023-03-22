@@ -15,7 +15,7 @@ import {store} from "../../store/store";
 //Также закомментите getServerSideProps и вместо 13 строки вставьте это: const Test: NextPage = () => {
 const Test: FC<{ test: ITest }> = ({test}) => {
     //const [test, setTest] = useState<ITest>();
-    const {reset, addAnswer, changeAnswer} = useAppAction();
+    const {reset, addAnswer, changeAnswer, sortAnswers} = useAppAction();
     const router = useRouter();
     const testid = Number(router.query.testid);
     const id = Number(router.query.id) - 1;
@@ -35,12 +35,14 @@ const Test: FC<{ test: ITest }> = ({test}) => {
             : changeAnswer(answer);
 
         reset();
-        await router.push(`/${testid}/${id + 2}`);
+        id + 2 > test.questions.length
+            ? await router.push(`/${testid}/${1}`)
+            : await router.push(`/${testid}/${id + 2}`);
     }
 
     const skip = async () => {
         reset();
-        id + 1 >= test.questions.length
+        id + 2 > test.questions.length
             ? await router.push(`/${testid}/${1}`)
             : await router.push(`/${testid}/${id + 2}`);
 
@@ -54,8 +56,9 @@ const Test: FC<{ test: ITest }> = ({test}) => {
         };
 
         addAnswer(answer);
+        sortAnswers();
         reset();
-        await router.push('/result');
+        await router.push(`/result?testid=${test.testid}`);
     }
 
     /*useEffect(() => {
@@ -109,6 +112,7 @@ const Test: FC<{ test: ITest }> = ({test}) => {
                                 disabled={false}
                                 key={index}
                                 index={index}
+                                questionId={id}
                             />)}
                     </div>
                     <div className={styles.buttons}>
@@ -132,6 +136,7 @@ export default Test;
 export async function getServerSideProps(context: any) {
     const {params} = context;
     const test = await getTest(Number(params.testid));
+    console.log(test)
     return {
         props: {
             test

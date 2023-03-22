@@ -17,6 +17,9 @@ export const testResultSlice = createSlice({
         },
         changeAnswer(state, payload: PayloadAction<IQuestionWithUserAnswers>) {
             state[payload.payload.id].userAnswers = payload.payload.userAnswers;
+        },
+        sortAnswers(state) {
+            state = state.sort((a, b) => a.id > b.id ? 1 : -1)
         }
     }
 });
